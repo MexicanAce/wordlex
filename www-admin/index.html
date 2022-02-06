@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>WordleX - Admin</title>
+
+  <link rel="stylesheet" href="styles.css">
+  <link rel="shortcut icon" href="favicon.ico">
+</head>
+<body>
+  <div class="header">
+    <div class="title">
+      Admin WordleX
+    </div>
+
+    <div id="first" class="place">First</div>
+    <div id="second" class="place">Second</div>
+    <div id="third" class="place">Third</div>
+  </div>
+
+  <div class="game-inputs">
+    <div class="secret-words">
+      <p>Secret Words (comma delimited)</p>
+      <input type="text" id="secret-words">
+    </div>
+    <div class="time-remaining">
+      <p>End Game Time</p>
+      <input type="checkbox" id="enable-timer">
+      <input type="datetime-local" id="end-game-time">
+    </div>
+    <div class="controls">
+      <button id="update-button">Update</button>
+    </div>
+  </div>
+
+  <div class="game-logs">
+    <p>Logs (newest at top):</p>
+    <div id="server-logs"></div>
+  </div>
+
+  <div id="password-modal" class="modal">
+    <div class="modal-content">
+      <p>Connection Password</p>
+      <input id="password" type="password">
+      <button id="password-submit">Submit</button>
+    </div>
+  </div>
+
+<script src="site.js"></script>
+
+</body>
+</html>

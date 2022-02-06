@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>WordleX</title>
+
+  <link rel="stylesheet" href="toastr.css">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="shortcut icon" href="favicon.ico">
+</head>
+<body>
+  <div class="header">
+    <button id="help-button">?</button>
+    <div class="title">
+      WordleX
+    </div>
+    <div id="name-display"></div>
+
+    <div class="medal-first">🥇</div>
+    <div class="medal-second">🥈</div>
+    <div class="medal-third">🥉</div>
+    <div id="first" class="place">First</div>
+    <div id="second" class="place">Second</div>
+    <div id="third" class="place">Third</div>
+  </div>
+
+  <div class="guesses">
+    <div id="countdown-timer"></div>
+    <div id="not-in-list">
+      Not in word list
+    </div>
+
+    <div id="guess-1" class="guess-row">
+      <div id="guess-1-1" class="guess-block"></div>
+      <div id="guess-1-2" class="guess-block"></div>
+      <div id="guess-1-3" class="guess-block"></div>
+      <div id="guess-1-4" class="guess-block"></div>
+      <div id="guess-1-5" class="guess-block"></div>
+    </div>
+    <div id="guess-2" class="guess-row">
+      <div id="guess-2-1" class="guess-block"></div>
+      <div id="guess-2-2" class="guess-block"></div>
+      <div id="guess-2-3" class="guess-block"></div>
+      <div id="guess-2-4" class="guess-block"></div>
+      <div id="guess-2-5" class="guess-block"></div>
+    </div>
+    <div id="guess-3" class="guess-row">
+      <div id="guess-3-1" class="guess-block"></div>
+      <div id="guess-3-2" class="guess-block"></div>
+      <div id="guess-3-3" class="guess-block"></div>
+      <div id="guess-3-4" class="guess-block"></div>
+      <div id="guess-3-5" class="guess-block"></div>
+    </div>
+    <div id="guess-4" class="guess-row">
+      <div id="guess-4-1" class="guess-block"></div>
+      <div id="guess-4-2" class="guess-block"></div>
+      <div id="guess-4-3" class="guess-block"></div>
+      <div id="guess-4-4" class="guess-block"></div>
+      <div id="guess-4-5" class="guess-block"></div>
+    </div>
+    <div id="guess-5" class="guess-row">
+      <div id="guess-5-1" class="guess-block"></div>
+      <div id="guess-5-2" class="guess-block"></div>
+      <div id="guess-5-3" class="guess-block"></div>
+      <div id="guess-5-4" class="guess-block"></div>
+      <div id="guess-5-5" class="guess-block"></div>
+    </div>
+    <div id="guess-6" class="guess-row">
+      <div id="guess-6-1" class="guess-block"></div>
+      <div id="guess-6-2" class="guess-block"></div>
+      <div id="guess-6-3" class="guess-block"></div>
+      <div id="guess-6-4" class="guess-block"></div>
+      <div id="guess-6-5" class="guess-block"></div>
+    </div>
+  </div>
+
+  <div id="answer">NICE</div>
+
+  <div class="keyboard">
+    <div class="key-row">
+      <div id="key-q" class="key-block">Q</div>
+      <div id="key-w" class="key-block">W</div>
+      <div id="key-e" class="key-block">E</div>
+      <div id="key-r" class="key-block">R</div>
+      <div id="key-t" class="key-block">T</div>
+      <div id="key-y" class="key-block">Y</div>
+      <div id="key-u" class="key-block">U</div>
+      <div id="key-i" class="key-block">I</div>
+      <div id="key-o" class="key-block">O</div>
+      <div id="key-p" class="key-block">P</div>
+    </div>
+    <div class="key-row">
+      <div id="key-a" class="key-block">A</div>
+      <div id="key-s" class="key-block">S</div>
+      <div id="key-d" class="key-block">D</div>
+      <div id="key-f" class="key-block">F</div>
+      <div id="key-g" class="key-block">G</div>
+      <div id="key-h" class="key-block">H</div>
+      <div id="key-j" class="key-block">J</div>
+      <div id="key-k" class="key-block">K</div>
+      <div id="key-l" class="key-block">L</div>
+    </div>
+    <div class="key-row">
+      <div id="key-enter" class="key-block">ENTER</div>
+      <div id="key-z" class="key-block">Z</div>
+      <div id="key-x" class="key-block">X</div>
+      <div id="key-c" class="key-block">C</div>
+      <div id="key-v" class="key-block">V</div>
+      <div id="key-b" class="key-block">B</div>
+      <div id="key-n" class="key-block">N</div>
+      <div id="key-m" class="key-block">M</div>
+      <div id="key-delete" class="key-block">UNDO</div>
+    </div>
+  </div>
+
+  
+  <div id="help-modal" class="modal">
+    <div class="modal-content">
+      <span id="help-close" class="close">&times;</span>
+
+      <p>
+        Guess the <b>WordleX</b> in 6 tries.
+      </p>
+      <p>
+        Each guess must be a valid 5 letter word. Hit ENTER to submit.
+      </p>
+      <p>
+        After each guess, the color of the tiles will change to show how close your guess was to the word.
+      </p>
+
+      <hr>
+
+      <p><b>Examples</b></p>
+
+      <div class="guess-row">
+        <div class="guess-block correct">w</div>
+        <div class="guess-block">e</div>
+        <div class="guess-block">a</div>
+        <div class="guess-block">r</div>
+        <div class="guess-block">y</div>
+      </div>
+      <p>
+        The letter W is in the word and in the correct spot.
+      </p>
+
+      <div class="guess-row">
+        <div class="guess-block">p</div>
+        <div class="guess-block wrong">i</div>
+        <div class="guess-block">l</div>
+        <div class="guess-block">l</div>
+        <div class="guess-block">s</div>
+      </div>
+      <p>
+        The letter I is in the word but in the wrong spot.
+      </p>
+
+      <div class="guess-row">
+        <div class="guess-block">v</div>
+        <div class="guess-block">a</div>
+        <div class="guess-block">g</div>
+        <div class="guess-block missing">u</div>
+        <div class="guess-block">e</div>
+      </div>
+      <p>
+        The letter U is not in the word in any spot.
+      </p>
+
+      <hr>
+
+      <p>
+        <b>Good Luck!</b>
+      </p>
+    </div>
+  </div>
+
+  <div id="name-modal" class="modal">
+    <div class="modal-content">
+      <p>What is your name?</p>
+      <input id="name" type="text" placeholder="John Doe">
+      <button id="name-submit">Submit</button>
+    </div>
+  </div>
+
+<script src="jquery.js"></script>
+<script src="toastr.js"></script>
+<script src="site.js"></script>
+
+</body>
+</html>
